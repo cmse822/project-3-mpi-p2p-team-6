@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 ### Blocking ping pong section ###
-add_executable(ping_pong ping_pong.cpp)
+add_executable(ping_pong src/ping_pong/ping_pong.cpp)
 
 target_link_libraries(ping_pong
   PRIVATE
@@ -21,10 +21,11 @@ target_link_libraries(ping_pong
 target_include_directories(
     ping_pong
     PRIVATE
+    include
     ${MPI_C_INCLUDE_PATH})
 
 ### Non-blocking ping pong section ###
-add_executable(ping_pong_non_blocking ping_pong_non_blocking.cpp)
+add_executable(ping_pong_non_blocking src/ping_pong/ping_pong_non_blocking.cpp)
 
 target_link_libraries(ping_pong_non_blocking
   PRIVATE
@@ -32,10 +33,11 @@ target_link_libraries(ping_pong_non_blocking
 
 target_include_directories(
   ping_pong_non_blocking
-    PRIVATE
-    ${MPI_C_INCLUDE_PATH})
+  PRIVATE
+  include
+  ${MPI_C_INCLUDE_PATH})
 
-add_executable(ring_shift ring_shift.cpp)
+add_executable(ring_shift src/ring_shift/ring_shift.cpp)
 
 target_link_libraries(ring_shift
   PRIVATE
@@ -44,6 +46,7 @@ target_link_libraries(ring_shift
 target_include_directories(
     ring_shift
     PRIVATE
+    include
     ${MPI_C_INCLUDE_PATH}) 
     
         

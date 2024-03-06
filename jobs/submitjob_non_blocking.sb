@@ -16,7 +16,7 @@ module load CMake/3.16.4
 
 cd $SLURM_SUBMIT_DIR                    ### change to the directory where your code is located
 
-chmod +x run_pingpong_non_blocking.sh
-./run_pingpong_non_blocking.sh
+chmod +x ../scripts/run_pingpong_non_blocking.sh
+../scripts/run_pingpong_non_blocking.sh
  
 scontrol show job $SLURM_JOB_ID         ### write job information to output file
