@@ -36,3 +36,23 @@ Repeat Part 3 but using non-blocking communication via `MPI_Isendrecv()`. Compar
 ## What to turn-in
 
 To your git project repo, commit your final working code for the above exercises and a concise write-up including all plots, and detailed responses to the questions posed concerning your results. 
+
+## Notes on how to run
+
+### Modules to load
+Follow this process:
+```sh
+module purge
+module load intel/2020a
+module load CMake/3.16.4
+```
+
+
+### Building with cmake
+```sh
+mkdir build
+cd build
+cmake ..
+make
+make install
+```
