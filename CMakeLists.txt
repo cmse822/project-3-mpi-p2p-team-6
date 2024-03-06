@@ -35,5 +35,22 @@ target_include_directories(
     PRIVATE
     ${MPI_C_INCLUDE_PATH})
 
+add_executable(ring_shift ring_shift.cpp)
+
+target_link_libraries(ring_shift
+  PRIVATE
+  MPI::MPI_CXX)
+
+target_include_directories(
+    ring_shift
+    PRIVATE
+    ${MPI_C_INCLUDE_PATH}) 
+    
+        
+
 # Install the executable in the current bin directory, not usr bin
-install(TARGETS ping_pong ping_pong_non_blocking DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+install(TARGETS 
+        ping_pong
+        ping_pong_non_blocking 
+        ring_shift 
+        DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/bin)
