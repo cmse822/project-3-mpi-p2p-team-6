@@ -14,7 +14,7 @@ void append_to_csv(const std::string &filename, const std::string &data) {
   if (!std::filesystem::exists(filename)) {
     std::ofstream file;
     file.open(filename);
-    file << "DataSize(MB),DataSizePerRank(MB),NumMPIRanks,MeanRingShiftTime(ms)"
+    file << "DataSize(B),DataSizePerRank(B),NumMPIRanks,MeanRingShiftTime(ms)"
             ",Bandwidth(GB/s),Latency(ms)\n";
     file.close();
   }
@@ -86,14 +86,13 @@ int main(int argc, char *argv[]) {
   g_printf("|RingShift Session|\n");
   g_printf("-----------------\n");
 
-  g_printf("\t>DATA_SIZE: %fMB\n", data_size_to_MB(DATA_SIZE));
+  g_printf("\t>DATA_SIZE: %fB\n", DATA_SIZE);
   g_printf("\t>NUM_EXCHANGE: %d\n", NUM_EXCHANGES);
   g_printf("\t>POSITION_SHIFT: %d\n", POSITION_SHIFT);
   g_printf("\t>NUM_MPI_RANKS: %d\n", world_size);
 
   const int &data_size_per_rank = DATA_SIZE / world_size;
-  g_printf("\t>DATA_SIZE_PER_RANK: %fMB\n",
-           data_size_to_MB(data_size_per_rank));
+  g_printf("\t>DATA_SIZE_PER_RANK: %fB\n", data_size_per_rank);
 
   char *data;
   if (rank == 0) {
@@ -156,18 +155,16 @@ int main(int argc, char *argv[]) {
         data_size_to_GB(data_size_per_rank) / mean_exec_time;
     const auto &latency = mean_exec_time / 2;
 
-    const auto &data_size_mb = data_size_to_MB(DATA_SIZE);
-    const auto &data_size_per_rank_mb = data_size_to_MB(data_size_per_rank);
-
     const auto &latency_ms = seconds_to_milliseconds(latency);
     const auto &mean_exec_time_ms = seconds_to_milliseconds(mean_exec_time);
 
-    const auto &output_data = std::to_string(data_size_mb) + "," +
-                              std::to_string(data_size_per_rank_mb) + "," +
+    const auto &output_data = std::to_string(DATA_SIZE) + "," +
+                              std::to_string(data_size_per_rank) + "," +
                               std::to_string(world_size) + "," +
                               std::to_string(mean_exec_time_ms) + "," +
                               std::to_string(bandwidth) + "," +
                               std::to_string(latency_ms) + "\n";
+                              
     append_to_csv(OUTPUT_REPORT_PATH, output_data);
 
     g_printf("\t> Mean RingShift Time: %fms\n", mean_exec_time_ms);

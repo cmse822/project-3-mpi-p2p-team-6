@@ -15,7 +15,7 @@ void append_to_csv(const std::string &filename, const std::string &data) {
   if (!std::filesystem::exists(filename)) {
     std::ofstream file;
     file.open(filename, std::ios_base::app);
-    file << "DataSize(GB),AvgPingPong(ms),Bandwidth(GB/s),Latency(ms)\n";
+    file << "DataSize(B),AvgPingPong(ms),Bandwidth(GB/s),Latency(ms)\n";
     file.close();
   }
 
@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
     g_printf("\t> Latency: %fms\n", latency_ms);
 
     // Append the results to a CSV file
-    std::string data = std::to_string(data_size_GB) + "," +
+    std::string data = std::to_string(DATA_SIZE) + "," +
                        std::to_string(avg_pingpong_ms) + "," +
                        std::to_string(bandwidth) + "," +
                        std::to_string(latency_ms) + "\n";
