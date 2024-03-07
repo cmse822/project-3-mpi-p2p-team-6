@@ -2,8 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-df = pd.read_csv('../results/part1_pingpong_multiple_nodes.csv')
-df2 = pd.read_csv('../results/part2_pingpong_non_blocking.csv')
+df = pd.read_csv('../results/part1_pingpong.csv')
+df2 = pd.read_csv('../results/part1_pingpong_multiple_nodes.csv')
+
 
 df_plot = df.set_index('DataSize(B)')
 df2_plot = df2.set_index('DataSize(B)')
