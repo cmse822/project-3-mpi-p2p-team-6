@@ -1,5 +1,5 @@
 NUM_EXCHANGES=100
-OUTPUT_REPORT_FILE="results/part2_pingpong_non_blocking.csv"
+OUTPUT_REPORT_FILE="${1:-results/part2_pingpong_non_blocking.csv}"
 PINGPONG_EXECUTABLE="bin/ping_pong_non_blocking"
 
 # Remove earlier logs 
