@@ -79,30 +79,30 @@ int main(int argc, char *argv[]) {
   char *data = new char[DATA_SIZE];
 
   std::vector<double> pingpong_time_vec(NUM_EXCHANGES);
-  MPI_Request request;
+
+  std::vector<MPI_Request> reqs(2);
 
   for (int i = 0; i < NUM_EXCHANGES; i++) {
+    
+    double start_time = get_time();
 
     if (rank == ping) {
 
-      const auto &start_time = get_time();
-
-      MPI_Isend(data, DATA_SIZE, MPI_BYTE, pong, 0, MPI_COMM_WORLD, &request);
-      MPI_Irecv(data, DATA_SIZE, MPI_BYTE, pong, 0, MPI_COMM_WORLD, &request);
-
-      const auto &end_time = get_time();
-
-      const auto &delta_time = end_time - start_time;
-      pingpong_time_vec[i] = delta_time;
+      MPI_Isend(data, DATA_SIZE, MPI_BYTE, pong, 0, MPI_COMM_WORLD, &reqs[0]);
+      MPI_Irecv(data, DATA_SIZE, MPI_BYTE, pong, 0, MPI_COMM_WORLD, &reqs[1]);
 
     } else if (rank == pong) {
 
-      MPI_Irecv(data, DATA_SIZE, MPI_BYTE, ping, 0, MPI_COMM_WORLD, &request);
-      MPI_Isend(data, DATA_SIZE, MPI_BYTE, ping, 0, MPI_COMM_WORLD, &request);
+      MPI_Irecv(data, DATA_SIZE, MPI_BYTE, ping, 0, MPI_COMM_WORLD, &reqs[1]);
+      MPI_Isend(data, DATA_SIZE, MPI_BYTE, ping, 0, MPI_COMM_WORLD, &reqs[0]);
     }
 
-    MPI_Wait(&request, MPI_STATUS_IGNORE);
+    MPI_Waitall(2, reqs.data(), MPI_STATUS_IGNORE);
+
+    double end_time = get_time();
+    pingpong_time_vec[i] = end_time - start_time;
   }
+
 
   // Synchronize all MPI ranks
   MPI_Barrier(MPI_COMM_WORLD);
