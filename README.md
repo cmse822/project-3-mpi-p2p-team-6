@@ -39,6 +39,7 @@ Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` an
 2. As in Parts 1 and 2, vary the message size from 2 bytes to 4 kb, in powers of 2. Also vary the number of processes used from 2 to `N`, in powers of 2, where `N` is sufficiently large that rank 0 and rank `N-1` are guaranteed to reside on separate nodes (`N` will depend on which cluster you are using on HPCC).
    Done? Need a sb script for this??
 3. Compute the bandwidth and latency, as above. Plot the bandwidth as a function of message size. Include separate lines for each number of processes used.
+
    <img width="499" alt="Screenshot 2024-03-13 at 8 20 55 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/a3cc8f00-fdc1-436b-b67a-2c9b8eef6e68">
 
 
@@ -48,6 +49,7 @@ Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` an
 ## Part 4: Non-blocking MPI Ring Shift
 
 Repeat Part 3 but using non-blocking communication via MPI_Isend() and MPI_Irecv(). Compare the results to the blocking case.
+
 <img width="499" alt="Screenshot 2024-03-13 at 8 21 39 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/6f09a669-5cb9-4428-beba-f018c4f452e3">
 
 
