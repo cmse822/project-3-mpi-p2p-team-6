@@ -21,13 +21,17 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
    Done. Results are in `results/part1_pingpong_multiple_nodes.csv`.
 5. Plot the average communication time of a single exchange (send and receive) as a function of message size for the two cases. Using this plot, estimate the _latency_ and _bandwidth_ for each case. Are they different? Explain your results.
 
+![Picture1](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
-<img width="499" alt="Screenshot 2024-03-13 at 8 09 07 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/fef28444-6d8f-43a7-a55d-b22568f0019b">
 
 ## Part 2: Non-block Ping-Pong
 
 Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` and `MPI_Irecv()`. You will need to include explicit process synchronization using, e.g., `MPI_Wait()` calls. Compare the results to the blocking case.
+
+![Picture2](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
 
     
 <img width="499" alt="Screenshot 2024-03-13 at 8 09 19 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/0dc23f5a-829b-4745-ab69-a026704fabac">
