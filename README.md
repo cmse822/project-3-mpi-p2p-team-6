@@ -33,9 +33,6 @@ Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` an
 
 ![Picture2](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
 
-    
-<img width="499" alt="Screenshot 2024-03-13 at 8 09 19 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/0dc23f5a-829b-4745-ab69-a026704fabac">
-
 ## Part 3: MPI Ring Shift
 
 1. Implement the MPI ring shift in C or C++ for an arbitrary number of processes in the ring and arbitrary message size (i.e., number of elements per process). In your implementation, use `MPI_Sendrecv()` instead of separate `MPI_Send()` and `MPI_Recv()` calls.
