@@ -21,17 +21,23 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
    Done. Results are in `results/part1_pingpong_multiple_nodes.csv`.
 5. Plot the average communication time of a single exchange (send and receive) as a function of message size for the two cases. Using this plot, estimate the _latency_ and _bandwidth_ for each case. Are they different? Explain your results.
 
+
 ![Picture1](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
 
+![Picture2](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
 
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
+
+The latency and average ping plots seems to be very similar if not exactly the same. They are about the same for both singular and multiple nodes as well. The real difference between one and multiple nodes appears in the bandwidth. Multiple nodes seems to have a much smoother curve where singular jumps a lot. Also the single node seems to reach a higher max bandwidth of around 4GB/s where multiple nodes reaches around 2GB/s
 
 
 ## Part 2: Non-block Ping-Pong
 
 Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` and `MPI_Irecv()`. You will need to include explicit process synchronization using, e.g., `MPI_Wait()` calls. Compare the results to the blocking case.
 
-![Picture2](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
+![Picture3](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/24263014-cb12-45ff-b136-5bac36bdab93)
+
+![Picture4](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/63f96857-4e15-4ed9-80f4-7dcd554fe2af)
 
 ## Part 3: MPI Ring Shift
 
