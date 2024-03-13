@@ -49,18 +49,20 @@ These results appear to be mostly the same as the blocking ping-pong results whe
    Done? Need a sb script for this??
 3. Compute the bandwidth and latency, as above. Plot the bandwidth as a function of message size. Include separate lines for each number of processes used.
 
-   <img width="499" alt="Screenshot 2024-03-13 at 8 20 55 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/a3cc8f00-fdc1-436b-b67a-2c9b8eef6e68">
+<img width="500" alt="Screenshot 2024-03-13 at 9 08 42 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/13197ab2-2a1d-4147-8bfb-aebd4404bc85">
 
 
 5. Analyze and discuss your results. Explain the behavior of the resulting curves.
-   TODO
+
+The results appear to be similar to the blocking results from the first part, but with the ring shift there is a range of points at each data size. This also resulted in a very different looking bandwidth curve with it looking to more gradually increase over time before leveling out where before the increase was much more severe.
 
 ## Part 4: Non-blocking MPI Ring Shift
 
 Repeat Part 3 but using non-blocking communication via MPI_Isend() and MPI_Irecv(). Compare the results to the blocking case.
 
-<img width="499" alt="Screenshot 2024-03-13 at 8 25 52 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/b206dadc-075c-4b96-8cce-a16eb2c1bf5c">
+<img width="500" alt="Screenshot 2024-03-13 at 9 09 04 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/ab6afa77-933a-4f3c-9149-2b0babf3ad81">
 
+The results are again similar to the non-blocking results from part 2 but the ring shift gives a range of results at each point in datasize. The bandwidth curve is again less severe of an increase when compared to the curve in part two. Comparing it to the curve in part 3 the range of results at each point in datasize also seems more varied.
 
 ## What to turn-in
 
