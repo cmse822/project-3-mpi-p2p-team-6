@@ -29,29 +29,29 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
 
    **Blocking - Single Node**
 
-   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part1_pingpong_blocking_avgpingpong.png)
 
    **Blocking - Multiple Nodes**
 
-   ![Blocking Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
+   ![Blocking Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part1_pingpong_blocking_multiple_nodes_avgpingpong.png)
 
    Additionally, we provided the bandwidth and latency graphs below
 
    **Blocking Bandwidth Over Message Sizes - Single Node**
 
-   ![Blocking Bandwidth Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+   ![Blocking Bandwidth Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part1_pingpong_blocking_bandwidth.png)
 
    **Blocking Latency Over Message Sizes - Single Node**
 
-   ![Blocking Latency Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+   ![Blocking Latency Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part1_pingpong_blocking_latency.png)
 
    **Blocking Bandwidth Over Message Sizes - Multiple Nodes**
 
-   ![Blocking Bandwidth Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+   ![Blocking Bandwidth Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part1_pingpong_blocking_multiple_nodes_bandwidth.png)
 
    **Blocking Latency Over Message Sizes - Multiple Nodes**
 
-   ![Blocking Latency Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+   ![Blocking Latency Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part1_pingpong_blocking_multiple_nodes_latency.png)
 
    And here is the chart for the two scenarios displaying the estimated latency and bandwidth. I got the bandwidth numbers by taking 1/slope of the communication time graphs. I got latency by taking the intercept of the linear regression line for the communication time graphs.
 
@@ -72,29 +72,29 @@ Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` an
 
 **Non-Blocking - Single Node**
 
-![Non-Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/24263014-cb12-45ff-b136-5bac36bdab93)
+![Non-Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part2_pingpong_non_blocking_avgpingpong.png)
 
 **Non-Blocking - Multiple Nodes**
 
-![Non-Blocking Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/63f96857-4e15-4ed9-80f4-7dcd554fe2af)
+![Non-Blocking Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part2_pingpong_non_blocking_multiple_nodes_avgpingpong.png)
 
 Again, we provide the non-blocking plots for the bandwidth and latency since we had the data and it could be a useful visual to visualize how bandwidth and latency changes with respect to message size.
 
 **Non-Blocking Bandwidth Over Message Sizes - Single Node**
 
-![Non-Blocking Bandwidth Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+![Non-Blocking Bandwidth Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part2_pingpong_non_blocking_bandwidth.png)
 
 **Non-Blocking Latency Over Message Sizes - Single Node**
 
-![Non-Blocking Latency Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+![Non-Blocking Latency Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part2_pingpong_non_blocking_latency.png)
 
 **Non-Blocking Bandwidth Over Message Sizes - Multiple Nodes**
 
-![Non-Blocking Bandwidth Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+![Non-Blocking Bandwidth Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part2_pingpong_non_blocking_multiple_nodes_bandwidth.png)
 
 **Non-Blocking Latency Over Message Sizes - Multiple Nodes**
 
-![Non-Blocking Latency Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+![Non-Blocking Latency Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part2_pingpong_non_blocking_multiple_nodes_latency.png)
 
 And here is the chart for the two scenarios displaying the estimated latency and bandwidth. I got the bandwidth numbers by taking 1/slope of the communication time graphs. I got latency by taking the intercept of the linear regression line for the communication time graphs.
 
@@ -119,17 +119,17 @@ These results appear to be mostly the same as the blocking ping-pong results whe
 
    **Blocking Bandwidth for Ring Shift**
 
-   ![Blocking Bandwidth Ring Shift](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+   ![Blocking Bandwidth Ring Shift](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part3_ringshift_blocking_bandwidth.png)
 
    And here is the tabular view of the computed bandwidth and latency.
 
    | Scenario                 | Bandwidth (GB/s) | Latency (s) |
    |--------------------------|------------------|-------------|
-   | Ring Shift Blocking      |       4.56GB/s   |             |
+   | Ring Shift Blocking      |       1.35GB/s   |  2.12E-5    |
 
 4. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
-The results appear to be similar to the blocking results from the first part, but with the ring shift there is a range of points at each data size. This also resulted in a very different looking bandwidth curve with it looking to more gradually increase over time before leveling out where before the increase was much more severe.
+The results show that the lower ranks resulted in the higher bandwidth, based on the graph above. Additionally, all curves increased as the data size increased. Latency looks to be aligned with the results from the blocking cases in the ping-pong part. This latency looks to be slightly lower, however.
 
 ## Part 4: Non-blocking MPI Ring Shift
 
@@ -139,15 +139,15 @@ Here is the non-blocking plots for MPI Ring shift:
 
 **Non-Blocking Bandwidth for Ring Shift**
 
-![Non-Blocking Bandwidth Ring Shift](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+![Non-Blocking Bandwidth Ring Shift](https://github.com/cmse822/project-3-mpi-p2p-team-6/blob/main/plots/part4_ringshift_non_blocking_bandwidth.png)
 
 And here is the tabular view of the computed bandwidth and latency.
 
 | Scenario                 | Bandwidth (GB/s) | Latency (s) |
 |--------------------------|------------------|-------------|
-| Ring Shift Non-Blocking  |       4.56GB/s   |             |
+| Ring Shift Non-Blocking  |       2.40GB/s   |   2.70E-5   |
 
-The results are again similar to the non-blocking results from part 2 but the ring shift gives a range of results at each point in datasize. The bandwidth curve is again less severe of an increase when compared to the curve in part two. Comparing it to the curve in part 3 the range of results at each point in datasize also seems more varied.
+The results are somewhat similar to the bl;ocking case in part 3 from a visual perspective. Each of the lines (indicating the number of processes in the ring) increase in bandwidth as the data size gets larger. The lower rank numbers again did better then the higher rank numbers. However, the difference here is that the bandwidth is higher. Latency still remained around the same for both non-blocking and blocking, varying slightly.
 
 ## What to turn-in
 
