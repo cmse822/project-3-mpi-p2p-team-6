@@ -27,31 +27,83 @@ Your task is to implement the ping-pong problem using MPI in C or C++ and analyz
 
    Below are the plotted graphs of the two ping pong results that we were able to achieve for both scenarios. That is, the blocking intra-node communication and inter-node communications.
 
+   **Blocking - Single Node**
 
    ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
 
-   ![Blocking Different Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
+   **Blocking - Multiple Nodes**
+
+   ![Blocking Multiple Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
+
+   Additionally, we provided the bandwidth and latency graphs below
+
+   **Blocking Bandwidth Over Message Sizes - Single Node**
+
+   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+   **Blocking Latency Over Message Sizes - Single Node**
+
+   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+   **Blocking Bandwidth Over Message Sizes - Multiple Nodes**
+
+   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+   **Blocking Latency Over Message Sizes - Multiple Nodes**
+
+   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
 
    And here is the chart for the two scenarios displaying the estimated latency and bandwidth.
 
    | Scenario                 | Bandwidth (GB/s) | Latency (s) |
-   |-----------------------   |------------------|-------------|
+   |--------------------------|------------------|-------------|
    | Blocking Same Node       |       4GB/s      |             |
-   | Blocking Different Nodes |       2GB/s      |             |
+   | Blocking Multiple Nodes  |       2GB/s      |             |
 
    To answer the question, yes, they are different. The bandwidth is nearly half that on the same node versus different nodes, which makes sense since there's no network communication overhead (latency, congestion, infrastructure limitations).
 
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
-The latency and average ping plots seems to be very similar if not exactly the same. They are about the same for both singular and multiple nodes as well. The real difference between one and multiple nodes appears in the bandwidth. Multiple nodes seems to have a much smoother curve where singular jumps a lot. Also the single node seems to reach a higher max bandwidth of around 4GB/s where multiple nodes reaches around 2GB/s
+   The latency and average ping plots seems to be very similar if not exactly the same. They are about the same for both singular and multiple nodes as well. The real difference between one and multiple nodes appears in the bandwidth. Multiple nodes seems to have a much smoother curve where singular jumps a lot. Also the single node seems to reach a higher max bandwidth of around 4GB/s where multiple nodes reaches around 2GB/s
 
 ## Part 2: Non-block Ping-Pong
 
 Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` and `MPI_Irecv()`. You will need to include explicit process synchronization using, e.g., `MPI_Wait()` calls. Compare the results to the blocking case.
 
+**Non-Blocking - Single Node**
+
 ![Non-Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/24263014-cb12-45ff-b136-5bac36bdab93)
 
+**Non-Blocking - Multiple Nodes**
+
 ![Non-Blocking Different Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/63f96857-4e15-4ed9-80f4-7dcd554fe2af)
+
+Again, we provide the non-blocking plots for the bandwidth and latency since we had the data and it could be a useful visual to visualize how bandwidth and latency changes with respect to message size.
+
+
+**Non-Blocking Bandwidth Over Message Sizes - Single Node**
+
+![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+**Non-Blocking Latency Over Message Sizes - Single Node**
+
+![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+**Non-Blocking Bandwidth Over Message Sizes - Multiple Nodes**
+
+![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+**Non-Blocking Latency Over Message Sizes - Multiple Nodes**
+
+![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+And here is the chart for the two scenarios displaying the estimated latency and bandwidth.
+
+| Scenario                     | Bandwidth (GB/s) | Latency (s) |
+|------------------------------|------------------|-------------|
+| Non-Blocking Same Node       |       4GB/s      |             |
+| Non-Blocking Multiple Nodes  |       2GB/s      |             |
+
 
 These results appear to be mostly the same as the blocking ping-pong results when just looking at the average ping and latency curves. The major differences come from the bandwidth curves. In the single node curve the bandwidth seems to have a more severe drop before leveling out. The multiple node curve does not appear to have this. Another difference would be the max bandwidth is almost double that of the respective curves from the blocking results.
 
@@ -63,12 +115,15 @@ These results appear to be mostly the same as the blocking ping-pong results whe
 2. As in Parts 1 and 2, vary the message size from 2 bytes to 4 kb, in powers of 2. Also vary the number of processes used from 2 to `N`, in powers of 2, where `N` is sufficiently large that rank 0 and rank `N-1` are guaranteed to reside on separate nodes (`N` will depend on which cluster you are using on HPCC).
 
    Done.
-
 3. Compute the bandwidth and latency, as above. Plot the bandwidth as a function of message size. Include separate lines for each number of processes used.
+
+   Below is our plotted bandwidth graph. Please note that this particular part doesn't really specify whether we have to run on on single node vs multiple nodes, but does state that N needs to big enough to run on multiple nodes. So I am going into this with the assumption that we are going to be communicating across nodes (for the larger N) and not needing to have graphs for solely single nodes. This question also wants us to just plot the bandwidth, so we do just that below:
 
 <img width="500" alt="Screenshot 2024-03-13 at 9 08 42 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/13197ab2-2a1d-4147-8bfb-aebd4404bc85">
 
-5. Analyze and discuss your results. Explain the behavior of the resulting curves.
+   And here is the tabular view of the computed bandwidth and latency.
+
+1. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
 The results appear to be similar to the blocking results from the first part, but with the ring shift there is a range of points at each data size. This also resulted in a very different looking bandwidth curve with it looking to more gradually increase over time before leveling out where before the increase was much more severe.
 
