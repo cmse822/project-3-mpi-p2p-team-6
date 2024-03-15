@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.stats import linregress
 
 PING_PONG_BLOCKING_FILENAME = '../results/part1_pingpong.csv'
 PING_PONG_BLOCKING_MULTI_NODE_FILENAME = '../results/part1_pingpong_multiple_nodes.csv'
@@ -13,6 +14,12 @@ RING_SHIFT_NON_BLOCKING_FILENAME = '../results/part4_ringshift_non_blocking.csv'
 
 def plot_part1_part2_pingpong(filename, savefilename, prefix_title=""):
     df = pd.read_csv(filename)
+
+    # Fit linear regression
+    slope, intercept, r_value, p_value, std_err = linregress(df['DataSize(B)'], df['AvgPingPong(ms)'])
+    
+    # Print the latency (intercept)
+    print("Latency (Intercept):", intercept, "ms")
 
     # Plot AvgPingPong
     plt.figure(figsize=(8, 6))
@@ -49,6 +56,12 @@ def plot_part1_part2_pingpong(filename, savefilename, prefix_title=""):
 
 def plot_part3_part4_ringshift(filename, savefilename, prefix_title=""):
     df = pd.read_csv(filename)
+
+    # Fit linear regression
+    slope, intercept, r_value, p_value, std_err = linregress(df['DataSize(B)'], df['MeanRingShiftTime(ms)'])
+    
+    # Print the latency (intercept)
+    print("Latency (Intercept):", intercept, "ms")
 
     # Filter rows where DataSize(B) is a power of 2
     df = df[df['DataSize(B)'].apply(lambda x: x & (x - 1) == 0)]
