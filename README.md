@@ -5,52 +5,68 @@
 
 The ping-pong problem is a benchmark often used to evaluate the performance of message passing interfaces (MPI) in parallel computing. In this problem, two processes exchange messages back and forth a specified number of times, with each process sending a message and receiving a message alternately. In the ping-pong, process `i` sends a message of size `m` to process `j`, then receives a message of size `m` back from `j`. The values of `i`, `j`, and `m` to use are given below.
 
-The "ring shift" problem is similar to ping-pong. In the MPI ring shift, a group of processes is arranged in a ring, with each process holding a unique subset of a larger array of data. The goal is to shift the data elements by a specified number of positions around the ring, wrapping around the ends of the ring as necessary. 
+The "ring shift" problem is similar to ping-pong. In the MPI ring shift, a group of processes is arranged in a ring, with each process holding a unique subset of a larger array of data. The goal is to shift the data elements by a specified number of positions around the ring, wrapping around the ends of the ring as necessary.
 
 ## Part 1: Blocking Ping-Pong
 
 Your task is to implement the ping-pong problem using MPI in C or C++ and analyze the behavior and performance of your code. Specifically, you should:
 
 1. Implement the ping-pong problem using MPI in C or C++. Use blocking `MPI_Send()` and `MPI_Recv()` calls. You should define the number of iterations and the size of the message to be exchanged.
+
    Done.
 2. Measure the time taken to complete the ping-pong exchange for different message sizes. You should use the `MPI_Wtime()` function to obtain the time before and after the exchange and calculate the elapsed time. Vary the message size from 2 bytes to 4 kilobytes in powers of 2 (i.e., 2 bytes, 4 bytes, 8 bytes,..., 2048 bytes, 4096 bytes). For each message size, perform 100 iterations of the ping-pong to build up statistical significance.
+
    Done.
 3. Record the total amount of data sent and received during the ping-pong exchange for each configuration.
+
    Done. Results are in `results/part1_pingpong.csv`.
 4. Repeat steps 2 and 3 but ensure that the 2 processes that are communicating reside on different physical hardware nodes on HPCC.
+
    Done. Results are in `results/part1_pingpong_multiple_nodes.csv`.
 5. Plot the average communication time of a single exchange (send and receive) as a function of message size for the two cases. Using this plot, estimate the _latency_ and _bandwidth_ for each case. Are they different? Explain your results.
 
+   Below are the plotted graphs of the two ping pong results that we were able to achieve for both scenarios. That is, the blocking intra-node communication and inter-node communications.
 
-![Picture1](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
 
-![Picture2](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
+   ![Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/7824761a-f681-4c06-8e6a-4b274bde679e)
+
+   ![Blocking Different Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/f6a53d6f-77d3-4a7f-b637-ac58d949bb34)
+
+   And here is the chart for the two scenarios displaying the estimated latency and bandwidth.
+
+   | Scenario                 | Bandwidth (GB/s) | Latency (s) |
+   |-----------------------   |------------------|-------------|
+   | Blocking Same Node       |       4GB/s      |             |
+   | Blocking Different Nodes |       2GB/s      |             |
+
+   To answer the question, yes, they are different. The bandwidth is nearly half that on the same node versus different nodes, which makes sense since there's no network communication overhead (latency, congestion, infrastructure limitations).
 
 6. Analyze and discuss your results. Explain the behavior of the resulting curves.
 
 The latency and average ping plots seems to be very similar if not exactly the same. They are about the same for both singular and multiple nodes as well. The real difference between one and multiple nodes appears in the bandwidth. Multiple nodes seems to have a much smoother curve where singular jumps a lot. Also the single node seems to reach a higher max bandwidth of around 4GB/s where multiple nodes reaches around 2GB/s
 
-
 ## Part 2: Non-block Ping-Pong
 
 Repeat Part 1 using non-blocking MPI communication, i.e., using `MPI_Isend()` and `MPI_Irecv()`. You will need to include explicit process synchronization using, e.g., `MPI_Wait()` calls. Compare the results to the blocking case.
 
-![Picture3](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/24263014-cb12-45ff-b136-5bac36bdab93)
+![Non-Blocking Same Node](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/24263014-cb12-45ff-b136-5bac36bdab93)
 
-![Picture4](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/63f96857-4e15-4ed9-80f4-7dcd554fe2af)
+![Non-Blocking Different Nodes](https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/63f96857-4e15-4ed9-80f4-7dcd554fe2af)
 
-These results appear to be mostly the same as the blocking ping-pong results when just lookin at the average ping and latency curves. The major differences come from the bandwidth curves. In the single node curve the bandwidth seems to have a more severe drop before leveling out. The multiple node curve does not appear to have this. Another difference would be the max bandwidth is almost double that of the respective curves from the blocking results.
+These results appear to be mostly the same as the blocking ping-pong results when just looking at the average ping and latency curves. The major differences come from the bandwidth curves. In the single node curve the bandwidth seems to have a more severe drop before leveling out. The multiple node curve does not appear to have this. Another difference would be the max bandwidth is almost double that of the respective curves from the blocking results.
 
 ## Part 3: MPI Ring Shift
 
 1. Implement the MPI ring shift in C or C++ for an arbitrary number of processes in the ring and arbitrary message size (i.e., number of elements per process). In your implementation, use `MPI_Sendrecv()` instead of separate `MPI_Send()` and `MPI_Recv()` calls.
+
    Done.
 2. As in Parts 1 and 2, vary the message size from 2 bytes to 4 kb, in powers of 2. Also vary the number of processes used from 2 to `N`, in powers of 2, where `N` is sufficiently large that rank 0 and rank `N-1` are guaranteed to reside on separate nodes (`N` will depend on which cluster you are using on HPCC).
-   Done? Need a sb script for this??
+
+   Done.
+
 3. Compute the bandwidth and latency, as above. Plot the bandwidth as a function of message size. Include separate lines for each number of processes used.
 
 <img width="500" alt="Screenshot 2024-03-13 at 9 08 42 AM" src="https://github.com/cmse822/project-3-mpi-p2p-team-6/assets/94200328/13197ab2-2a1d-4147-8bfb-aebd4404bc85">
-
 
 5. Analyze and discuss your results. Explain the behavior of the resulting curves.
 

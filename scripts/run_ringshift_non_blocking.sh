@@ -1,5 +1,5 @@
 NUM_EXCHANGES=100
-OUTPUT_REPORT_FILE="results/part3_ringshift_non_blocking.csv"
+OUTPUT_REPORT_FILE="results/part4_ringshift_non_blocking.csv"
 RINGSHIFT_EXECUTABLE="bin/ring_shift_non_blocking"
 
 # Remove earlier logs 
